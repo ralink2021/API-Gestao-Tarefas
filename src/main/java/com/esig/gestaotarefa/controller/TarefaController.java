@@ -1,5 +1,6 @@
 package com.esig.gestaotarefa.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import com.esig.gestaotarefa.service.TarefaService;
 @RequestMapping(value = "/tarefa")
 public class TarefaController {
 	
+	@Autowired
 	TarefaService serviceTarefa;
 	
 	/** Metodo POST - Para Salvar uma Tarefa */
