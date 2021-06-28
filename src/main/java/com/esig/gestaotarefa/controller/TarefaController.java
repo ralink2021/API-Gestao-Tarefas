@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.service.TarefaService;
 
-@CrossOrigin
 @RestController
 @RequestMapping(value = "/tarefa")
 public class TarefaController {
