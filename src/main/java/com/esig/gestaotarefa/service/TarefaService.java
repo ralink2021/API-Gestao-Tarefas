@@ -24,4 +24,14 @@ public class TarefaService {
 		return repository.findAll();
 	}
 	
+	/* Serviço para Atualizar uma Tarefa */
+	public Tarefa updateTarefa(Tarefa tarefa) {
+		return repository.save(tarefa);
+	}
+	
+	/* Serviço para Deletar uma Tarefa */
+	public void deleteTarefa(Long id) {
+		repository.deleteById(id);
+	}
+	
 }
