@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.esig.gestaotarefa.dto.mapper.TarefaMapper;
-import com.esig.gestaotarefa.dto.request.TarefaDTO;
-import com.esig.gestaotarefa.dto.response.MessageResponseDTO;
-import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.repository.TarefaRepository;
 
@@ -20,8 +16,6 @@ public class TarefaService {
 	@Autowired
 	TarefaRepository repository;
 	
-	@Autowired
-	TarefaMapper tarefaMapper;
 	
 	/* Serviço para Salvar uma Tarefas */
 	public Tarefa saveTarefa(Tarefa tarefa) {
@@ -35,13 +29,8 @@ public class TarefaService {
 	}
 	
 	/* Serviço para Atualizar uma Tarefa */
-	public MessageResponseDTO updateTarefa(Long id, TarefaDTO tarefaDTO) throws TarefaNotFoundException{
-		repository.findById(id).orElseThrow(() -> new TarefaNotFoundException(id));
-		Tarefa updateTarefa = tarefaMapper.toModel(tarefaDTO);
-		Tarefa savedTarefa = repository.save(updateTarefa);
-		MessageResponseDTO messageResponse = createMessageResponse("Tarefa alterada com Sucesso com ID ", savedTarefa.getId());
-		return messageResponse;
-		
+	public Tarefa updateTarefa(Tarefa tarefa) {
+		return repository.save(tarefa);
 	}
 	
 	/* Serviço para Deletar uma Tarefa */
@@ -49,11 +38,5 @@ public class TarefaService {
 	public void deleteTarefa(Long id) {
 		repository.deleteById(id);
 	}
-	
-	private MessageResponseDTO createMessageResponse(String s, Long id2) {
-        return MessageResponseDTO.builder()
-                .message(s + id2)
-                .build();
-    }
 	
 }

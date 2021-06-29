@@ -2,8 +2,6 @@ package com.esig.gestaotarefa.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,20 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esig.gestaotarefa.dto.request.TarefaDTO;
-import com.esig.gestaotarefa.dto.response.MessageResponseDTO;
-import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.service.TarefaService;
 
-import lombok.AllArgsConstructor;
-
 @RestController
 @RequestMapping(value = "/tarefa")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class TarefaController {
 	
-	private final TarefaService serviceTarefa;
+	@Autowired
+	TarefaService serviceTarefa;
 	
 	/** Metodo POST - Para Salvar uma Tarefa */
 	@PostMapping
@@ -47,10 +40,10 @@ public class TarefaController {
 	}
 	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping("/{id}")
+	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
-	public MessageResponseDTO updateTarefa(@PathVariable Long id, @RequestBody @Valid TarefaDTO tarefaDTO) throws TarefaNotFoundException{
-		return serviceTarefa.updateTarefa(id, tarefaDTO);
+	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
+		return serviceTarefa.updateTarefa(tarefa);
 	}
 	
 	/** Metodo DELETE - Para Deletar uma Tarefa */
