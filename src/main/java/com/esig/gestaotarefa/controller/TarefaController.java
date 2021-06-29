@@ -51,8 +51,8 @@ public class TarefaController {
 	/** Metodo PUT - Para Alterar uma Tarefa */
 	@PutMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
-		return serviceTarefa.updateTarefa(tarefa);
+	public ResponseEntity<Tarefa> updateTarefa (@RequestBody Tarefa tarefa, @PathVariable Long id) {
+		return ResponseEntity.ok().body(serviceTarefa.updateTarefa(id, tarefa));
 	}
 	
 	/** Metodo DELETE - Para Deletar uma Tarefa */

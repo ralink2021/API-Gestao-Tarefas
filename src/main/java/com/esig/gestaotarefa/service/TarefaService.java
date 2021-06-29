@@ -42,8 +42,14 @@ public class TarefaService {
 	}
 	
 	/* Serviço para Atualizar uma Tarefa */
-	public Tarefa updateTarefa(Tarefa tarefa) {
-		return repository.save(tarefa);
+	public Tarefa updateTarefa(Long id,Tarefa tarefa) {
+		Optional<Tarefa> tarefaOptional = repository.findById(id);
+		if(!tarefaOptional.isPresent()) {
+			throw new TarefaNotFoundException(id);
+		} else {
+			repository.findById(id);
+			return repository.save(tarefa);
+		}
 	}
 	
 	/* Serviço para Deletar uma Tarefa */
