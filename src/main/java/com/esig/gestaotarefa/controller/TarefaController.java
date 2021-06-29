@@ -1,9 +1,11 @@
 package com.esig.gestaotarefa.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,15 +41,22 @@ public class TarefaController {
 		
 	}
 	
+	/** Metodo GET - Para Listagem das Tarefas por ID */
+	@GetMapping(path = "/tarefa/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Optional<Tarefa>> getTarefaById(@PathVariable Long id){
+		return ResponseEntity.ok().body(serviceTarefa.findById(id));
+	}
+	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping
+	@PutMapping(path = "/tarefa/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
 		return serviceTarefa.updateTarefa(tarefa);
 	}
 	
 	/** Metodo DELETE - Para Deletar uma Tarefa */
-	@DeleteMapping("/{id}")
+	@DeleteMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteTarefa(@PathVariable Long id) {
 		serviceTarefa.deleteTarefa(id);

@@ -1,11 +1,13 @@
 package com.esig.gestaotarefa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.repository.TarefaRepository;
 
@@ -26,6 +28,17 @@ public class TarefaService {
 	@Transactional(readOnly = true)
 	public List<Tarefa> findAll(){
 		return repository.findAll();
+	}
+	
+	/* Serviço para Buscar uma Tarefa por ID */
+	public Optional<Tarefa> findById(Long id) throws TarefaNotFoundException{
+		Optional<Tarefa> tarefa = repository.findById(id);
+		if(!tarefa.isPresent()) {
+			throw new TarefaNotFoundException(id);
+		} else {
+			return repository.findById(id);
+		}
+		
 	}
 	
 	/* Serviço para Atualizar uma Tarefa */
