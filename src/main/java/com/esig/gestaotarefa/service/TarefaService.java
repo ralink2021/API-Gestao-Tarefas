@@ -13,15 +13,15 @@ import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.repository.TarefaRepository;
 
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class TarefaService {
 	
-	private final TarefaRepository repository;
+	@Autowired
+	TarefaRepository repository;
 	
-	private final TarefaMapper tarefaMapper;
+	@Autowired
+	TarefaMapper tarefaMapper;
 	
 	/* Serviço para Salvar uma Tarefas */
 	public Tarefa saveTarefa(Tarefa tarefa) {
