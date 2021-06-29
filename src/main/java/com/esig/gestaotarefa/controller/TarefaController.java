@@ -22,12 +22,14 @@ import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.service.TarefaService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping(value = "/tarefa")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class TarefaController {
 	
-	@Autowired
-	TarefaService serviceTarefa;
+	private final TarefaService serviceTarefa;
 	
 	/** Metodo POST - Para Salvar uma Tarefa */
 	@PostMapping
