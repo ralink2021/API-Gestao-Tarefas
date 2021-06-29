@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esig.gestaotarefa.dto.TarefaDTO;
+import com.esig.gestaotarefa.dto.request.TarefaDTO;
+import com.esig.gestaotarefa.dto.response.MessageResponseDTO;
+import com.esig.gestaotarefa.exception.TarefaNotFoundException;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.service.TarefaService;
 
@@ -43,10 +45,10 @@ public class TarefaController {
 	}
 	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
-		return serviceTarefa.updateTarefa(tarefa);
+	public MessageResponseDTO updateTarefa(@PathVariable Long id, @RequestBody @Valid TarefaDTO tarefaDTO) throws TarefaNotFoundException{
+		return serviceTarefa.updateTarefa(id, tarefaDTO);
 	}
 	
 	/** Metodo DELETE - Para Deletar uma Tarefa */
