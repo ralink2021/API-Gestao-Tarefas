@@ -42,14 +42,14 @@ public class TarefaController {
 	}
 	
 	/** Metodo GET - Para Listagem das Tarefas por ID */
-	@GetMapping(path = "/tarefa/{id}")
+	@GetMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Optional<Tarefa>> getTarefaById(@PathVariable Long id){
 		return ResponseEntity.ok().body(serviceTarefa.findById(id));
 	}
 	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping(path = "/tarefa/{id}")
+	@PutMapping(path = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
 		return serviceTarefa.updateTarefa(tarefa);
