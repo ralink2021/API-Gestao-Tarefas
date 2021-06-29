@@ -2,6 +2,8 @@ package com.esig.gestaotarefa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.esig.gestaotarefa.dto.TarefaDTO;
 import com.esig.gestaotarefa.model.Tarefa;
 import com.esig.gestaotarefa.service.TarefaService;
 
@@ -26,6 +29,7 @@ public class TarefaController {
 	
 	/** Metodo POST - Para Salvar uma Tarefa */
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public Tarefa createTarefa(@RequestBody Tarefa tarefa) {
 		return serviceTarefa.saveTarefa(tarefa);
 		
@@ -39,8 +43,9 @@ public class TarefaController {
 	}
 	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping
-	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Tarefa updateTarefa(@PathVariable Long id, @RequestBody Tarefa tarefa, @Valid TarefaDTO tarefaDTO) {
 		return serviceTarefa.updateTarefa(tarefa);
 	}
 	
