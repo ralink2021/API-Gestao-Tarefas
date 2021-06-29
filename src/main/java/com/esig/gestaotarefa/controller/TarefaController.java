@@ -43,9 +43,9 @@ public class TarefaController {
 	}
 	
 	/** Metodo PUT - Para Alterar uma Tarefa */
-	@PutMapping("/{id}")
+	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
-	public Tarefa updateTarefa(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+	public Tarefa updateTarefa(@RequestBody Tarefa tarefa) {
 		return serviceTarefa.updateTarefa(tarefa);
 	}
 	
