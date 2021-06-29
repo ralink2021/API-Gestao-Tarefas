@@ -2,10 +2,12 @@ package com.esig.gestaotarefa.dto.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
 import com.esig.gestaotarefa.dto.request.TarefaDTO;
 import com.esig.gestaotarefa.model.Tarefa;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface TarefaMapper {
 	
