@@ -5,15 +5,15 @@ Aplicação Exemplo - Sistema de Gestão de Tarefas.
 
 Item realizado Obrigatorios.
 
-b) Utilizar persistencia em um banco de dados PostgreSQL - OK
+- b) Utilizar persistencia em um banco de dados PostgreSQL - OK
 
-c) Utilizar JPA - OK
+- c) Utilizar JPA - OK
 
 Itens Opcionais.
 
-e) Publicar Projeto no Heroku
+- e) Publicar Projeto no Heroku - OK
 
-f) Diferenciais adicionais - Utilizado o Swagger para documentação.
+- f) Diferenciais adicionais - Utilizado o Swagger para documentação.
 
 ___________________________________________________________________________
 
